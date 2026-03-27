@@ -115,12 +115,5 @@ GUI：**太阳日联立** 文件夹、`苍=每辉烬圈×2`、`辉自转=半年/
 
 开启记录后，在观察者模式下会按帧采样；时间戳为 **`simulatedDays`（太阳日）**。轨迹为世界坐标折线，多用于定性观察。
 
-## 升级与排错
 
-- **升级 Three.js**：同时修改 `index.html` 中 import map 的版本号，并查阅 [迁移指南](https://github.com/mrdoob/three.js/wiki/Migration-Guide)，重点检查材质、色彩空间、控制器 API。
-- **无法加载模块**：确认使用 HTTP 服务；检查网络能否访问 `unpkg.com`。
-- **时间过快/过慢**：调 `daysPerRealSecond`、`timeSpeed`；联立下辉烬/苍周期随 `siderealDayDays` 自动变，勿与手动周期混淆。
 
-## 许可
-
-未随仓库声明许可时，默认保留所有权利；若开源请补充 `LICENSE` 并在此 README 中注明。
