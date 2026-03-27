@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>辉星系虚拟天文模型 - 居住者视角</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body { 
+            margin: 0; 
+            overflow: hidden; 
+            background-color: #000; 
+            font-family: 'Courier New', monospace;
+        }
+        #info {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            color: #00ff00;
+            background: rgba(0,0,0,0.8);
+            padding: 15px;
+            pointer-events: none;
+            user-select: none;
+            border: 1px solid #00ff00;
+            border-radius: 5px;
+            font-size: 12px;
+            line-height: 1.4;
+            max-width: 300px;
+        }
+        #gui-container {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            z-index: 1000;
+        }
+        #loading {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #00ff00;
+            font-size: 18px;
+            text-align: center;
+            z-index: 2000;
+        }
+        .loading-dots {
+            animation: blink 1s infinite;
+        }
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0.3; }
+        }
+        #debug {
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+            color: #ffff00;
+            background: rgba(0,0,0,0.7);
+            padding: 10px;
+            font-size: 10px;
+            border: 1px solid #ffff00;
+            border-radius: 3px;
+            max-width: 400px;
+            max-height: 200px;
+            overflow-y: auto;
+        }
+        #celestial-info {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            color: #ffffff;
+            background: rgba(0,0,0,0.8);
+            padding: 10px;
+            font-size: 11px;
+            border: 1px solid #ffffff;
+            border-radius: 3px;
+            max-width: 250px;
+            pointer-events: none;
+        }
+        .observer-mode {
+            background: rgba(0, 50, 0, 0.8) !important;
+            border-color: #00ff00 !important;
+        }
+    </style>
+    <!-- Import maps polyfill -->
+    <script async src="https://unpkg.com/es-module-shims@1.8.0/dist/es-module-shims.js"></script>
+    
+    <script type="importmap">
+        {
+            "imports": {
+                "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+                "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+            }
+        }
+    </script>
+</head>
+<body>
+    <div id="loading">
+        <div>正在初始化辉星系居住者视角...</div>
+        <div class="loading-dots">...</div>
+    </div>
+    
+    <div id="info" style="display: none;">
+        <h2>辉星系居住者视角</h2>
+        <p>控制: 鼠标左键旋转，右键平移，滚轮缩放</p>
+        <p>当前视角: <span id="current-view">上帝视角</span></p>
+        <p>太阳历: <span id="sim-time">0.00 日</span> · 年内: <span id="sim-day-of-year">第 0 日</span></p>
+        <p>太阳日联立: 辉烬 <span id="huijin-period-display">—</span> 日/周 · 苍 <span id="cang-period-display">—</span> 日/周</p>
+        <p>观测锚点: <span id="observer-anchor">辉星</span></p>
+        <p>观察者位置: <span id="observer-position">纬度0°, 经度0°</span></p>
+        <p>当前季节: <span id="current-season">计算中...</span></p>
+        <p>FPS: <span id="fps">0</span></p>
+    </div>
+    
+    <div id="celestial-info" style="display: none;">
+        <h3>天体位置信息</h3>
+        <div id="celestial-data">
+            正在计算天体位置...
+        </div>
+    </div>
+    
+    <div id="gui-container" style="display: none;"></div>
+    <div id="debug" style="display: none;"></div>
+    
+    <script type="module" src="main.js"></script>
+</body>
+</html>
